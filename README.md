@@ -29,3 +29,68 @@ Instalação da biblioteca:
 
 ```bash
 pip install colorama
+Como Executar
+
+Abra o terminal na pasta do projeto.
+
+Execute o arquivo principal:
+
+python main.py
+
+
+Siga o fluxo:
+
+Escolha a raça do personagem.
+
+Escolha a classe do personagem.
+
+Distribua os atributos (dependendo do método escolhido).
+
+Visualize a ficha completa do personagem.
+
+Exemplo de Uso
+CRIADOR DE PERSONAGENS DE RPG
+
+Escolha a raça do seu personagem:
+1. Humano
+2. Elfo
+3. Anão
+4. Halfling
+
+Digite o número da raça: 1
+Humano selecionado!
+
+Escolha a classe do seu personagem:
+1. Guerreiro
+2. Mago
+3. Bardo
+
+Digite o número da classe: 1
+Guerreiro selecionado!
+
+Distribuição de atributos (Estilo Clássico, 3d6 em ordem)...
+
+Ficha do Personagem:
+Nome: Aramis
+Raça: Humano
+Classe: Guerreiro
+Atributos:
+Força: 15
+Destreza: 12
+Constituição: 14
+Inteligência: 10
+Sabedoria: 13
+Carisma: 11
+Movimento: 9 metros
+
+Observações
+
+O projeto mantém o estilo de cores no terminal para facilitar a visualização das mensagens.
+
+Futuras melhorias podem incluir:
+
+Mais raças e classes.
+
+Salvamento de personagens em arquivo.
+
+Sistema de evolução de níveis.
