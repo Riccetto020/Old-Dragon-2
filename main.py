@@ -14,7 +14,6 @@ def limpar_tela():
 while True:
     titulo_principal("CRIADOR DE PERSONAGENS DE RPG")
 
-    # Seleção de Raça
     while True:
         print(Fore.YELLOW + "\nEscolha a raça do seu personagem:" + Style.RESET_ALL)
         for idx, raca in enumerate(todas_racas, start=1):
@@ -79,4 +78,5 @@ while True:
         input(Fore.MAGENTA + "\nPressione Enter para continuar..." + Style.RESET_ALL)
     else:
         mensagem_erro("Opção inválida. Por favor, tente novamente.")
+
 
