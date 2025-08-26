@@ -6,7 +6,7 @@ from racas import todas_racas
 from classes import CLASSES
 import os
 
-# Função para limpar a tela de forma portátil
+
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -36,7 +36,6 @@ while True:
     if escolha_raca == '0':
         continue
 
-    # Seleção de Classe
     while True:
         print(Fore.YELLOW + "\nEscolha a classe do seu personagem:" + Style.RESET_ALL)
         for idx, classe in enumerate(CLASSES, start=1):
@@ -58,7 +57,7 @@ while True:
     if escolha_raca == '0':
         continue  
 
-    # Seleção do método de distribuição de atributos
+
     print(Fore.YELLOW + "\nEscolha o método de distribuição de atributos:" + Style.RESET_ALL)
     print(Fore.CYAN + "1. Estilo Clássico")
     print(Fore.CYAN + "2. Estilo Aventureiro")
@@ -80,3 +79,4 @@ while True:
         input(Fore.MAGENTA + "\nPressione Enter para continuar..." + Style.RESET_ALL)
     else:
         mensagem_erro("Opção inválida. Por favor, tente novamente.")
+
