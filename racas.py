@@ -1,14 +1,18 @@
 from colorama import Fore, Style
 
 class Raca:
-    def __init__(self, nome, habilidades=None, movimento=0):
+    def __init__(self, nome, habilidades=None, movimento=0, infravisao="não possui", alinhamento="qualquer um"):
         self.nome = nome
         self.habilidades = habilidades if habilidades else []
         self.movimento = movimento
+        self.infravisao = infravisao
+        self.alinhamento = alinhamento
 
     def mostrar_info(self):
         print(Fore.MAGENTA + f"\nRaça: {self.nome}" + Style.RESET_ALL)
         print(Fore.CYAN + f"Movimento base: {self.movimento} metros" + Style.RESET_ALL)
+        print(Fore.BLUE + f"Infravisão: {self.infravisao}" + Style.RESET_ALL)
+        print(Fore.BLUE + f"Alinhamento: {self.alinhamento}" + Style.RESET_ALL)
         if self.habilidades:
             print(Fore.GREEN + "Habilidades de Raça:" + Style.RESET_ALL)
             for habilidade in self.habilidades:
@@ -20,7 +24,9 @@ humano = Raca(
         "Aprendizado: recebe +10% de XP",
         "Adaptabilidade: +1 em uma JP à escolha"
     ],
-    movimento=9
+    movimento=9,
+    infravisao="não possui",
+    alinhamento="qualquer um"
 )
 
 elfo = Raca(
@@ -31,7 +37,9 @@ elfo = Raca(
         "Arma Racial: +1 em dano de ataques à distância com arcos",
         "Imunidades: imune a sono e paralisia causada por Ghoul"
     ],
-    movimento=9
+    movimento=9,
+    infravisao="18 metros",
+    alinhamento="tendem à neutralidade"
 )
 
 anao = Raca(
@@ -42,7 +50,9 @@ anao = Raca(
         "Armas grandes: armas grandes são consideradas médias para anões",
         "Inimigos: ataques contra orcs, ogros e hobgoblins são considerados fáceis"
     ],
-    movimento=6
+    movimento=6,
+    infravisao="18 metros",
+    alinhamento="tendem à ordem"
 )
 
 halfling = Raca(
@@ -54,7 +64,9 @@ halfling = Raca(
         "Pequenos: ataques de criaturas grandes ou maiores são difíceis de acertar",
         "Restrições: só pode usar armaduras de couro ou especiais; armas grandes proibidas; armas médias usadas como se fossem de duas mãos"
     ],
-    movimento=6
+    movimento=6,
+    infravisao="não possui",
+    alinhamento="tendem à neutralidade"
 )
 
 todas_racas = [humano, elfo, anao, halfling]
