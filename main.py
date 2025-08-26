@@ -4,11 +4,17 @@ from personagem import Personagem
 from metodos import EstiloClassico, EstiloAventureiro, EstiloHeroico
 from racas import todas_racas
 from classes import CLASSES
+import os
+
+# Função para limpar a tela de forma portátil
+def limpar_tela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 while True:
     titulo_principal("CRIADOR DE PERSONAGENS DE RPG")
 
-
+    # Seleção de Raça
     while True:
         print(Fore.YELLOW + "\nEscolha a raça do seu personagem:" + Style.RESET_ALL)
         for idx, raca in enumerate(todas_racas, start=1):
@@ -21,6 +27,7 @@ while True:
 
         try:
             raca_escolhida = todas_racas[int(escolha_raca)-1]
+            print(Fore.YELLOW + "\nInformações da raça selecionada:" + Style.RESET_ALL)
             raca_escolhida.mostrar_info()
             break
         except (IndexError, ValueError):
@@ -29,7 +36,7 @@ while True:
     if escolha_raca == '0':
         continue
 
- 
+    # Seleção de Classe
     while True:
         print(Fore.YELLOW + "\nEscolha a classe do seu personagem:" + Style.RESET_ALL)
         for idx, classe in enumerate(CLASSES, start=1):
@@ -51,7 +58,7 @@ while True:
     if escolha_raca == '0':
         continue  
 
-
+    # Seleção do método de distribuição de atributos
     print(Fore.YELLOW + "\nEscolha o método de distribuição de atributos:" + Style.RESET_ALL)
     print(Fore.CYAN + "1. Estilo Clássico")
     print(Fore.CYAN + "2. Estilo Aventureiro")
@@ -66,7 +73,10 @@ while True:
         nome_personagem = input(Fore.CYAN + "\nQual é o nome do seu personagem? " + Style.RESET_ALL)
         metodo_escolhido = {'1': EstiloClassico, '2': EstiloAventureiro, '3': EstiloHeroico}[escolha_metodo]()
         novo_personagem = Personagem(nome_personagem, metodo_escolhido, raca_escolhida, classe_escolhida)
+
+        limpar_tela()  # Limpa a tela antes de mostrar a ficha final
         novo_personagem.mostrar_ficha()
+
         input(Fore.MAGENTA + "\nPressione Enter para continuar..." + Style.RESET_ALL)
     else:
         mensagem_erro("Opção inválida. Por favor, tente novamente.")
