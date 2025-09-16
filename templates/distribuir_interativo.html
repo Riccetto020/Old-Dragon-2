@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuir Atributos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Estilos específicos para esta página, que complementam o style.css */
+        .valores-rolados-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #4a4a4a; /* Fundo um pouco mais escuro para destacar */
+            border-radius: 8px;
+            border: 1px solid #666;
+            display: inline-block; /* Para ocupar apenas o espaço necessário */
+        }
+        .valores-rolados-container p {
+            margin: 0 0 10px 0;
+            color: #ddd;
+            font-size: 1.1em;
+        }
+        .valores-rolados {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 15px; /* Espaçamento entre os valores */
+            flex-wrap: wrap; /* Quebra de linha se não couber */
+            justify-content: center;
+        }
+        .valores-rolados li {
+            background: #00bfff; /* Fundo azul vibrante para os valores rolados */
+            color: #fff; /* Texto branco para contraste */
+            padding: 12px 20px;
+            border-radius: 25px; /* Para um visual mais arredondado */
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0, 191, 255, 0.4); /* Sombra sutil */
+        }
+        form {
+            background: #3e3e3e; /* Fundo do formulário */
+            padding: 40px; /* Mais espaço interno */
+            border-radius: 12px; /* Mais arredondado */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
+            max-width: 500px; /* Um pouco mais largo */
+            width: 100%;
+        }
+        label {
+            color: #ccc; /* Cor do label */
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        select {
+            padding: 12px; /* Mais espaço interno no select */
+            border: 1px solid #666; /* Borda mais escura */
+            background-color: #5a5a5a; /* Fundo do select */
+            color: #f4f4f4;
+            font-size: 1.1em;
+        }
+        button[type="submit"] {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            background: #00d8ff; /* Um azul mais claro e vibrante */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button[type="submit"]:hover {
+            background: #00b0e0;
+            transform: translateY(-2px); /* Efeito sutil de elevação */
+        }
+        /* Ajustes para garantir que o form/label/select fiquem bem alinhados dentro do container */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distribua seus Atributos</h1>
+        <p>Você rolou os seguintes valores. Distribua-os para os atributos abaixo:</p>
+
+        <div class="valores-rolados-container">
+            <p>Valores disponíveis:</p>
+            <ul class="valores-rolados">
+                {% for valor in valores %}
+                <li>{{ valor }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form action="{{ url_for('gerar_ficha_final') }}" method="post" onsubmit="return validarSelecoes();">
+            <div class="form-group">
+                <label for="forca">Força:</label>
+                <select name="forca" id="forca" class="atributo-select" required></select>
+            </div>
+            <div class="form-group">
+                <label for="destreza">Destreza:</label>
+                <select name="destreza" id="destreza" class="atributo-select" required></select>
+            </div>
+            <div class="form-group">
+                <label for="constituicao">Constituição:</label>
+                <select name="constituicao" id="constituicao" class="atributo-select" required></select>
+            </div>
+            <div class="form-group">
+                <label for="inteligencia">Inteligência:</label>
+                <select name="inteligencia" id="inteligencia" class="atributo-select" required></select>
+            </div>
+            <div class="form-group">
+                <label for="sabedoria">Sabedoria:</label>
+                <select name="sabedoria" id="sabedoria" class="atributo-select" required></select>
+            </div>
+            <div class="form-group">
+                <label for="carisma">Carisma:</label>
+                <select name="carisma" id="carisma" class="atributo-select" required></select>
+            </div>
+            <button type="submit">Gerar Ficha</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selects = document.querySelectorAll('.atributo-select');
+            const valoresIniciais = Array.from(document.querySelectorAll('.valores-rolados li')).map(li => parseInt(li.textContent.trim()));
+            
+            function atualizarOpcoes() {
+                const valoresSelecionadosAtualmente = Array.from(selects).map(select => parseInt(select.value)).filter(val => !isNaN(val));
+                
+                selects.forEach(select => {
+                    const valorAtualDoSelect = parseInt(select.value); 
+                    const valoresDisponiveisParaEsteSelect = [...valoresIniciais]; 
+                    valoresSelecionadosAtualmente.forEach(valorSelecionado => {
+                        if (valorSelecionado !== valorAtualDoSelect) { 
+                            const index = valoresDisponiveisParaEsteSelect.indexOf(valorSelecionado);
+                            if (index > -1) {
+                                valoresDisponiveisParaEsteSelect.splice(index, 1); 
+                            }
+                        }
+                    });
+
+                 
+                    select.innerHTML = '<option value="">-- Escolha --</option>'; 
+                    valoresDisponiveisParaEsteSelect.sort((a, b) => b - a); 
+
+                    valoresDisponiveisParaEsteSelect.forEach(valor => {
+                        const option = document.createElement('option');
+                        option.value = valor;
+                        option.textContent = valor;
+                        select.appendChild(option);
+                    });
+                    
+                    if (!isNaN(valorAtualDoSelect) && valoresDisponiveisParaEsteSelect.includes(valorAtualDoSelect)) {
+                        select.value = valorAtualDoSelect;
+                    } else {
+                        select.value = "";
+                    }
+                });
+            }
+            
+            atualizarOpcoes(); 
+            selects.forEach(select => {
+                select.addEventListener('change', atualizarOpcoes); 
+            });
+        });
+        
+        function validarSelecoes() {
+            const selects = document.querySelectorAll('.atributo-select');
+            const valoresRolados = Array.from(document.querySelectorAll('.valores-rolados li')).map(li => parseInt(li.textContent.trim())).sort((a, b) => a - b);
+            const valoresSelecionados = Array.from(selects).map(select => parseInt(select.value)).filter(v => !isNaN(v)).sort((a, b) => a - b);
+            
+           
+            if (valoresSelecionados.length < 6) {
+                alert('Por favor, distribua todos os 6 valores antes de continuar.');
+                return false;
+            }
+            
+            
+            
+            if (JSON.stringify(valoresRolados) !== JSON.stringify(valoresSelecionados)) {
+                alert('Os valores distribuídos não correspondem aos valores rolados. Por favor, use exatamente os valores exibidos na tela.');
+                return false;
+            }
+            return true; 
+        }
+    </script>
+</body>
+</html>

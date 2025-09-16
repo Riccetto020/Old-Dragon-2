@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Personagens</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Criador de Personagens</h1>
+
+        <form action="/personagem" method="post" class="selection-form">
+            <div class="section">
+                <div class="section-header">Informações do Personagem</div>
+                
+                <label for="nome">Nome do Personagem:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <div class="selection-list">
+                    <label>Raça:</label>
+                    <ul>
+                        {% for raca in racas %}
+                        <li>
+                            <label for="raca-{{ loop.index }}">{{ raca.nome }}</label>
+                            <input type="radio" id="raca-{{ loop.index }}" name="raca" value="{{ loop.index }}" required>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="selection-list">
+                    <label>Classe:</label>
+                    <ul>
+                        {% for classe in classes %}
+                        <li>
+                            <label for="classe-{{ loop.index }}">{{ classe.nome }}</label>
+                            <input type="radio" id="classe-{{ loop.index }}" name="classe" value="{{ loop.index }}" required>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button type="submit">Criar Personagem</button>
+        </form>
+    </div>
+</body>
+</html>

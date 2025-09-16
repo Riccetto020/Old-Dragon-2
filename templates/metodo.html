@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Método de Atributos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Escolha o Método de Atributos</h1>
+        <form action="{{ url_for('distribuir_atributos') }}" method="post">
+            <div class="form-group">
+                <label for="metodo">Método de Distribuição:</label>
+                <select name="metodo" id="metodo" required>
+                    <option value="classico">Estilo Clássico (3d6 em ordem)</option>
+                    <option value="aventureiro">Estilo Aventureiro (3d6, distribua)</option>
+                    <option value="heroico">Estilo Heróico (4d6 drop menor, distribua)</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button type="submit">Continuar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
