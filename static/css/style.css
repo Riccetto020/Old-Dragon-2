@@ -1,0 +1,135 @@
+/* Estilos gerais para o corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #2c2c2c; /* Fundo cinza escuro */
+    color: #f4f4f4; /* Cor do texto para contraste */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contêiner principal para centralizar o conteúdo */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 40px auto;
+    background-color: #3e3e3e; /* Fundo da 'caixa' principal */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Título principal */
+h1 {
+    color: #eee; /* Cor clara para o título principal */
+    text-transform: uppercase;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Seções de conteúdo */
+.section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #444; /* Fundo das seções */
+    text-align: left; /* Alinha texto à esquerda dentro das seções */
+}
+
+.section-header {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #00bfff; /* Cor de destaque para os títulos das seções */
+    border-bottom: 2px solid #00bfff;
+    padding-bottom: 8px;
+}
+
+/* Formulário e elementos de input */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ccc;
+    width: 100%; /* Garante que o label ocupe a largura */
+    max-width: 300px; /* Limita a largura para melhor alinhamento */
+}
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #555; /* Fundo do select/input */
+    color: #f4f4f4; /* Cor do texto dentro do select/input */
+    appearance: none; /* Remove o estilo padrão do select */
+    max-width: 300px; /* Limita a largura */
+}
+
+button {
+    width: 100%;
+    max-width: 300px; /* Limita a largura do botão */
+    padding: 12px 20px;
+    border: none;
+    background: #00bfff; /* Cor do botão */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #008cbf; /* Cor do botão no hover */
+}
+
+/* Estilos específicos para a lista de raças/classes */
+.selection-list ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.selection-list li {
+    background: #3e3e3e;
+    color: #00bfff;
+    border: 1px solid #555;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+.selection-list li:hover {
+    background: #00bfff;
+    color: white;
+}
+
+/* Estilos para botões de voltar */
+.back-button {
+    background: #555; /* Cor mais sutil para voltar */
+    margin-top: 15px;
+}
+.back-button:hover {
+    background: #777;
+}
